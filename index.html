@@ -536,7 +536,7 @@
                     <div style="height: 200px; background: linear-gradient(135deg, #111111 0%, #333333 100%); display: flex; align-items: center; justify-content: center; color: white;">
                         <div class="text-center">
                             <p class="text-sm font-600 mb-2">THE KAKUKU FEAST BOX</p>
-                            <p class="text-3xl font-900">₦5,499</p>
+                            <p class="text-3xl font-900">KES 549</p>
                             <p class="text-sm font-600 mt-2">Feeds 4-5 People</p>
                         </div>
                     </div>
@@ -568,8 +568,8 @@
                     <div style="height: 200px; background: linear-gradient(135deg, #4CAF50 0%, #2E7D32 100%); display: flex; align-items: center; justify-content: center; color: white;">
                         <div class="text-center">
                             <p class="text-sm font-600 mb-2">LOCAL FAVORITES</p>
-                            <p class="text-3xl font-900">SAVE ₦1000</p>
-                            <p class="text-sm font-600 mt-2">Min. Order ₦3000</p>
+                            <p class="text-3xl font-900">SAVE KES 100</p>
+                            <p class="text-sm font-600 mt-2">Min. Order KES 300</p>
                         </div>
                     </div>
                     <div class="p-6">
@@ -628,16 +628,16 @@
             <div class="space-y-2">
                 <div class="flex justify-between text-sm">
                     <span class="text-gray-600">Subtotal</span>
-                    <span class="font-600" id="subtotal">₦0</span>
+                    <span class="font-600" id="subtotal">KES 0</span>
                 </div>
                 <div class="flex justify-between text-sm">
                     <span class="text-gray-600">Delivery</span>
-                    <span class="font-600" id="delivery">₦500</span>
+                    <span class="font-600" id="delivery">KES 50</span>
                 </div>
                 <div class="h-px bg-gray-200 my-2"></div>
                 <div class="flex justify-between text-lg">
                     <span class="font-900">Total</span>
-                    <span class="font-900 text-red-600" id="total">₦500</span>
+                    <span class="font-900 text-red-600" id="total">KES 50</span>
                 </div>
             </div>
             <button class="btn-primary w-full py-3 text-lg">Proceed to Checkout</button>
@@ -719,34 +719,34 @@
         // ==================== MENU DATA ====================
         const menuData = {
             buckets: [
-                { id: 1, name: "KaKuku Bucket Meal", category: "buckets", price: 4999, description: "8 pieces of crispy, golden-fried chicken with sides" },
-                { id: 2, name: "The Mega Bucket", category: "buckets", price: 7999, description: "16 pieces + 2 sides + 2 drinks. Perfect for groups!" },
-                { id: 3, name: "Family KaKuku Pack", category: "buckets", price: 5999, description: "10 pieces with fries, coleslaw & gravy" },
-                { id: 4, name: "Weekend Feast", category: "buckets", price: 8999, description: "20 pieces + 4 sides + bucket of ice cream" },
+                { id: 1, name: "KaKuku Bucket Meal", category: "buckets", price: 499, description: "8 pieces of crispy, golden-fried chicken with sides" },
+                { id: 2, name: "The Mega Bucket", category: "buckets", price: 799, description: "16 pieces + 2 sides + 2 drinks. Perfect for groups!" },
+                { id: 3, name: "Family KaKuku Pack", category: "buckets", price: 599, description: "10 pieces with fries, coleslaw & gravy" },
+                { id: 4, name: "Weekend Feast", category: "buckets", price: 899, description: "20 pieces + 4 sides + bucket of ice cream" },
             ],
             burgers: [
-                { id: 5, name: "Classic Zinger Burger", category: "burgers", price: 1899, description: "Crispy fried chicken patty with lettuce and mayo" },
-                { id: 6, name: "Spicy Twister Wrap", category: "burgers", price: 1599, description: "Hot & spicy chicken in a soft flour tortilla" },
-                { id: 7, name: "Double Chicken Burger", category: "burgers", price: 2299, description: "Two juicy chicken patties with special sauce" },
-                { id: 8, name: "Cheese Loaded Zinger", category: "burgers", price: 2099, description: "Zinger with melted cheese and crispy bacon" },
+                { id: 5, name: "Classic Zinger Burger", category: "burgers", price: 189, description: "Crispy fried chicken patty with lettuce and mayo" },
+                { id: 6, name: "Spicy Twister Wrap", category: "burgers", price: 159, description: "Hot & spicy chicken in a soft flour tortilla" },
+                { id: 7, name: "Double Chicken Burger", category: "burgers", price: 229, description: "Two juicy chicken patties with special sauce" },
+                { id: 8, name: "Cheese Loaded Zinger", category: "burgers", price: 209, description: "Zinger with melted cheese and crispy bacon" },
             ],
             sharing: [
-                { id: 9, name: "Party Mix Platter", category: "sharing", price: 6999, description: "Assorted chicken pieces for the whole squad" },
-                { id: 10, name: "Celebration Box", category: "sharing", price: 8999, description: "Everything you need for a party celebration" },
-                { id: 11, name: "Mixed Tenders Pack", category: "sharing", price: 4999, description: "12 tender strips with dipping sauces" },
-                { id: 12, name: "Bucket Party Set", category: "sharing", price: 9999, description: "2 buckets + 4 sides + 4 drinks" },
+                { id: 9, name: "Party Mix Platter", category: "sharing", price: 699, description: "Assorted chicken pieces for the whole squad" },
+                { id: 10, name: "Celebration Box", category: "sharing", price: 899, description: "Everything you need for a party celebration" },
+                { id: 11, name: "Mixed Tenders Pack", category: "sharing", price: 499, description: "12 tender strips with dipping sauces" },
+                { id: 12, name: "Bucket Party Set", category: "sharing", price: 999, description: "2 buckets + 4 sides + 4 drinks" },
             ],
             sides: [
-                { id: 13, name: "Crispy Fries", category: "sides", price: 599, description: "Golden, salted crispy fries" },
-                { id: 14, name: "Creamy Coleslaw", category: "sides", price: 699, description: "Fresh coleslaw with creamy dressing" },
-                { id: 15, name: "KaKuku Gravy", category: "sides", price: 499, description: "Rich, savory gravy for your chicken" },
-                { id: 16, name: "Corn on the Cob", category: "sides", price: 799, description: "Buttered and seasoned corn" },
+                { id: 13, name: "Crispy Fries", category: "sides", price: 59, description: "Golden, salted crispy fries" },
+                { id: 14, name: "Creamy Coleslaw", category: "sides", price: 69, description: "Fresh coleslaw with creamy dressing" },
+                { id: 15, name: "KaKuku Gravy", category: "sides", price: 49, description: "Rich, savory gravy for your chicken" },
+                { id: 16, name: "Corn on the Cob", category: "sides", price: 79, description: "Buttered and seasoned corn" },
             ],
             drinks: [
-                { id: 17, name: "Coca-Cola (500ml)", category: "drinks", price: 599, description: "Ice-cold Coca-Cola" },
-                { id: 18, name: "Sprite (500ml)", category: "drinks", price: 599, description: "Refreshing Sprite" },
-                { id: 19, name: "Fanta Orange (500ml)", category: "drinks", price: 499, description: "Sweet Fanta Orange" },
-                { id: 20, name: "Bottled Water (500ml)", category: "drinks", price: 299, description: "Pure bottled water" },
+                { id: 17, name: "Coca-Cola (500ml)", category: "drinks", price: 59, description: "Ice-cold Coca-Cola" },
+                { id: 18, name: "Sprite (500ml)", category: "drinks", price: 59, description: "Refreshing Sprite" },
+                { id: 19, name: "Fanta Orange (500ml)", category: "drinks", price: 49, description: "Sweet Fanta Orange" },
+                { id: 20, name: "Bottled Water (500ml)", category: "drinks", price: 29, description: "Pure bottled water" },
             ]
         };
 
@@ -791,7 +791,7 @@
                     <div class="cart-item">
                         <div class="flex-grow">
                             <p class="font-600 text-gray-900">${item.name}</p>
-                            <p class="text-sm text-gray-500">₦${item.price.toLocaleString()}</p>
+                            <p class="text-sm text-gray-500">KES ${item.price.toLocaleString()}</p>
                         </div>
                         <div class="quantity-control">
                             <button class="quantity-btn" onclick="decreaseQuantity(${index})">−</button>
@@ -841,12 +841,12 @@
 
         function updateTotals() {
             const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-            const delivery = subtotal > 0 ? 500 : 0;
+            const delivery = subtotal > 0 ? 50 : 0;
             const total = subtotal + delivery;
 
-            document.getElementById("subtotal").textContent = "₦" + subtotal.toLocaleString();
-            document.getElementById("delivery").textContent = "₦" + delivery.toLocaleString();
-            document.getElementById("total").textContent = "₦" + total.toLocaleString();
+            document.getElementById("subtotal").textContent = "KES " + subtotal.toLocaleString();
+            document.getElementById("delivery").textContent = "KES " + delivery.toLocaleString();
+            document.getElementById("total").textContent = "KES " + total.toLocaleString();
         }
 
         // ==================== MENU FUNCTIONS ====================
@@ -872,7 +872,7 @@
                         <h3 class="food-title">${item.name}</h3>
                         <p class="food-description">${item.description}</p>
                         <div class="food-footer">
-                            <span class="food-price">₦${item.price.toLocaleString()}</span>
+                            <span class="food-price">KES ${item.price.toLocaleString()}</span>
                             <button class="btn-add" onclick='addToCart(${JSON.stringify(item).replace(/'/g, "&apos;")})'>
                                 Add to Bucket
                             </button>
