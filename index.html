@@ -1,0 +1,909 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KaKuku Hotel - Finger-Lickin' Kuku!</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Lucide Icons CDN -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <!-- Custom Styles -->
+    <style>
+        * {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+        }
+
+        .navbar {
+            background: white;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        }
+
+        .nav-sticky {
+            position: sticky;
+            top: 0;
+            z-index: 40;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 900;
+            background: linear-gradient(135deg, #E4002B 0%, #111111 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -1px;
+        }
+
+        .btn-primary {
+            background: #E4002B;
+            color: white;
+            padding: 10px 24px;
+            border-radius: 6px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 2px solid #E4002B;
+            cursor: pointer;
+        }
+
+        .btn-primary:hover {
+            background: #b80020;
+            border-color: #b80020;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(228, 0, 43, 0.3);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: #E4002B;
+            padding: 10px 24px;
+            border-radius: 6px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 2px solid #E4002B;
+            cursor: pointer;
+        }
+
+        .btn-outline:hover {
+            background: #E4002B;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .hero-section {
+            background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-image {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(135deg, #E4002B20 0%, #11111110 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            color: #999;
+            position: relative;
+        }
+
+        .promo-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: 2px solid transparent;
+        }
+
+        .promo-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+            border-color: #E4002B;
+        }
+
+        .promo-badge {
+            background: #E4002B;
+            color: white;
+            padding: 6px 12px;
+            font-size: 12px;
+            font-weight: 700;
+            border-radius: 4px;
+            display: inline-block;
+        }
+
+        .menu-tabs {
+            display: flex;
+            gap: 8px;
+            overflow-x: auto;
+            padding: 8px 0;
+            scroll-behavior: smooth;
+        }
+
+        .menu-tabs::-webkit-scrollbar {
+            height: 4px;
+        }
+
+        .menu-tabs::-webkit-scrollbar-thumb {
+            background: #E4002B;
+            border-radius: 4px;
+        }
+
+        .tab-btn {
+            padding: 10px 20px;
+            background: #f8f9fa;
+            border: 2px solid transparent;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+            color: #111111;
+        }
+
+        .tab-btn:hover {
+            background: #E4002B20;
+            border-color: #E4002B;
+        }
+
+        .tab-btn.active {
+            background: #E4002B;
+            color: white;
+            border-color: #E4002B;
+        }
+
+        .food-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .food-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+        }
+
+        .food-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, #E4002B20 0%, #11111110 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            color: #999;
+        }
+
+        .food-content {
+            padding: 16px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .food-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: #111111;
+            margin-bottom: 8px;
+        }
+
+        .food-description {
+            font-size: 13px;
+            color: #666;
+            margin-bottom: 12px;
+            flex-grow: 1;
+        }
+
+        .food-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .food-price {
+            font-size: 18px;
+            font-weight: 700;
+            color: #E4002B;
+        }
+
+        .btn-add {
+            background: #E4002B;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            font-size: 13px;
+        }
+
+        .btn-add:hover {
+            background: #b80020;
+            transform: scale(1.05);
+        }
+
+        .cart-drawer {
+            position: fixed;
+            right: -400px;
+            top: 0;
+            width: 400px;
+            height: 100vh;
+            background: white;
+            box-shadow: -2px 0 12px rgba(0, 0, 0, 0.15);
+            z-index: 50;
+            transition: right 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+        }
+
+        .cart-drawer.open {
+            right: 0;
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .quantity-control {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: #f8f9fa;
+            border-radius: 6px;
+            padding: 4px;
+        }
+
+        .quantity-btn {
+            background: transparent;
+            border: none;
+            width: 28px;
+            height: 28px;
+            cursor: pointer;
+            font-weight: 700;
+            color: #E4002B;
+            transition: all 0.2s ease;
+        }
+
+        .quantity-btn:hover {
+            background: white;
+            border-radius: 4px;
+        }
+
+        .cart-badge {
+            background: #E4002B;
+            color: white;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: 700;
+            position: absolute;
+            top: -6px;
+            right: -6px;
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 40;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .overlay.open {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .search-input {
+            padding: 10px 16px;
+            border: 2px solid #f0f0f0;
+            border-radius: 8px;
+            font-size: 14px;
+            transition: all 0.2s ease;
+            width: 100%;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: #E4002B;
+            box-shadow: 0 0 0 3px rgba(228, 0, 43, 0.1);
+        }
+
+        .toggle-switch {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: #f8f9fa;
+            padding: 6px 12px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .toggle-switch.active {
+            background: #E4002B20;
+            color: #E4002B;
+        }
+
+        @media (max-width: 768px) {
+            .cart-drawer {
+                width: 100%;
+                right: -100%;
+            }
+
+            .hero-image {
+                height: 300px;
+            }
+
+            .logo {
+                font-size: 20px;
+            }
+        }
+
+        /* Smooth scrolling for sections */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Footer styling */
+        .footer-link {
+            color: #666;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-link:hover {
+            color: #E4002B;
+        }
+
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #f8f9fa;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .social-icon:hover {
+            background: #E4002B;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .deal-timer {
+            font-size: 12px;
+            color: #E4002B;
+            font-weight: 700;
+        }
+    </style>
+</head>
+<body class="bg-white text-gray-900">
+    <!-- Navigation Bar -->
+    <nav class="navbar nav-sticky">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Logo -->
+                <div class="flex items-center gap-8">
+                    <a href="#" class="logo">🍗 KaKuku Hotel</a>
+                    
+                    <!-- Desktop Navigation Links -->
+                    <div class="hidden md:flex gap-6 ml-8">
+                        <a href="#menu" class="text-gray-700 font-600 text-sm hover:text-red-600 transition">Menu</a>
+                        <a href="#deals" class="text-gray-700 font-600 text-sm hover:text-red-600 transition">Deals</a>
+                        <a href="#" class="text-gray-700 font-600 text-sm hover:text-red-600 transition">Store Locator</a>
+                    </div>
+                </div>
+
+                <!-- Center: Search Bar (Hidden on Mobile) -->
+                <div class="hidden md:flex flex-1 max-w-sm mx-8">
+                    <input 
+                        type="text" 
+                        class="search-input" 
+                        placeholder="Search for your favorite Kuku..."
+                    >
+                </div>
+
+                <!-- Right: Delivery/Pickup Toggle & Cart -->
+                <div class="flex items-center gap-4">
+                    <!-- Delivery/Pickup Toggle -->
+                    <div class="hidden sm:flex gap-2 items-center">
+                        <div class="toggle-switch active" id="deliveryToggle">
+                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M18 18.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM9 18.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z"/>
+                                <path d="M1 1h4v6H1V1zm6 0h12a2 2 0 012 2v6h2V3a4 4 0 00-4-4H7V1z"/>
+                            </svg>
+                            <span class="text-xs font-600">Delivery</span>
+                        </div>
+                    </div>
+
+                    <!-- Cart Icon -->
+                    <button id="cartBtn" class="relative p-2 hover:bg-gray-100 rounded-lg transition">
+                        <svg class="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 20a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zm10 0a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z"/>
+                        </svg>
+                        <div class="cart-badge" id="cartBadge" style="display: none;">0</div>
+                    </button>
+
+                    <!-- Mobile Menu Button -->
+                    <button id="mobileMenuBtn" class="md:hidden p-2 hover:bg-gray-100 rounded-lg transition">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Mobile Search Bar -->
+            <div class="md:hidden pb-4">
+                <input 
+                    type="text" 
+                    class="search-input" 
+                    placeholder="Search for your favorite Kuku..."
+                >
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section py-12 md:py-20 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                <!-- Left: Text Content -->
+                <div class="flex flex-col gap-6">
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-900 text-gray-900 leading-tight">
+                        Craving Something <span class="text-red-600">Crunchy?</span>
+                    </h1>
+                    <p class="text-gray-600 text-lg md:text-xl">
+                        Grab a KaKuku Bucket Today! Fresh, hot, and delivered straight to your doorstep.
+                    </p>
+                    <div class="flex gap-4 flex-wrap">
+                        <button class="btn-primary">Order Online</button>
+                        <button class="btn-outline">View Deals</button>
+                    </div>
+                </div>
+
+                <!-- Right: Hero Image -->
+                <div class="hero-image">
+                    <div class="text-center">
+                        <svg class="w-32 h-32 mx-auto mb-4 text-red-600 opacity-30" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"/>
+                        </svg>
+                        <p class="text-gray-500">Signature Fried Chicken Bucket</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Promo Banners / Special Offers -->
+    <section id="deals" class="py-16 px-4 sm:px-6 lg:px-8 bg-gray-50">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-3xl md:text-4xl font-900 mb-8 text-gray-900">Crispy Deals & Special Offers</h2>
+            
+            <div class="flex gap-4 overflow-x-auto pb-4" style="scroll-behavior: smooth;">
+                <!-- Promo Card 1 -->
+                <div class="promo-card flex-shrink-0 w-80 overflow-hidden">
+                    <div style="height: 200px; background: linear-gradient(135deg, #E4002B 0%, #b80020 100%); display: flex; align-items: center; justify-content: center; color: white;">
+                        <div class="text-center">
+                            <p class="text-sm font-600 mb-2">CRUNCHY TUESDAY</p>
+                            <p class="text-3xl font-900">BUY 1 GET 1</p>
+                            <p class="text-sm font-600 mt-2">FREE</p>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="promo-badge mb-4">Limited Time</div>
+                        <p class="text-gray-700 font-600">Double your pleasure with our unbeatable Crunchy Tuesday offer!</p>
+                        <p class="text-sm text-gray-500 mt-2 deal-timer">Expires in 2 days</p>
+                    </div>
+                </div>
+
+                <!-- Promo Card 2 -->
+                <div class="promo-card flex-shrink-0 w-80 overflow-hidden">
+                    <div style="height: 200px; background: linear-gradient(135deg, #111111 0%, #333333 100%); display: flex; align-items: center; justify-content: center; color: white;">
+                        <div class="text-center">
+                            <p class="text-sm font-600 mb-2">THE KAKUKU FEAST BOX</p>
+                            <p class="text-3xl font-900">₦5,499</p>
+                            <p class="text-sm font-600 mt-2">Feeds 4-5 People</p>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="promo-badge mb-4">Best Value</div>
+                        <p class="text-gray-700 font-600">Perfect for family dinners with a mix of crispy and juicy pieces.</p>
+                        <p class="text-sm text-gray-500 mt-2 deal-timer">Always Available</p>
+                    </div>
+                </div>
+
+                <!-- Promo Card 3 -->
+                <div class="promo-card flex-shrink-0 w-80 overflow-hidden">
+                    <div style="height: 200px; background: linear-gradient(135deg, #FF6B35 0%, #E4002B 100%); display: flex; align-items: center; justify-content: center; color: white;">
+                        <div class="text-center">
+                            <p class="text-sm font-600 mb-2">STREETWISE COMBO</p>
+                            <p class="text-3xl font-900">50% OFF</p>
+                            <p class="text-sm font-600 mt-2">On Selected Items</p>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="promo-badge mb-4">Flash Sale</div>
+                        <p class="text-gray-700 font-600">Grab your favorite combos at half the price while stocks last!</p>
+                        <p class="text-sm text-gray-500 mt-2 deal-timer">Expires in 5 days</p>
+                    </div>
+                </div>
+
+                <!-- Promo Card 4 -->
+                <div class="promo-card flex-shrink-0 w-80 overflow-hidden">
+                    <div style="height: 200px; background: linear-gradient(135deg, #4CAF50 0%, #2E7D32 100%); display: flex; align-items: center; justify-content: center; color: white;">
+                        <div class="text-center">
+                            <p class="text-sm font-600 mb-2">LOCAL FAVORITES</p>
+                            <p class="text-3xl font-900">SAVE ₦1000</p>
+                            <p class="text-sm font-600 mt-2">Min. Order ₦3000</p>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="promo-badge mb-4">Weekend Special</div>
+                        <p class="text-gray-700 font-600">Order your local favorites and enjoy instant discounts every weekend!</p>
+                        <p class="text-sm text-gray-500 mt-2 deal-timer">Fri - Sun</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Menu Grid -->
+    <section id="menu" class="py-16 px-4 sm:px-6 lg:px-8 bg-white">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-3xl md:text-4xl font-900 mb-8 text-gray-900">Finger-Lickin' Kuku Menu</h2>
+            
+            <!-- Menu Tabs -->
+            <div class="menu-tabs mb-12">
+                <button class="tab-btn active" data-category="all">All Items</button>
+                <button class="tab-btn" data-category="buckets">KaKuku Buckets</button>
+                <button class="tab-btn" data-category="burgers">Burgers & Twisters</button>
+                <button class="tab-btn" data-category="sharing">Sharing Meals</button>
+                <button class="tab-btn" data-category="sides">Sides & Extras</button>
+                <button class="tab-btn" data-category="drinks">Drinks</button>
+            </div>
+
+            <!-- Food Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6" id="foodGrid">
+                <!-- Food cards will be generated by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Cart Drawer -->
+    <div class="overlay" id="cartOverlay"></div>
+    <div class="cart-drawer" id="cartDrawer">
+        <div class="p-6 border-b border-gray-200">
+            <div class="flex items-center justify-between">
+                <h3 class="text-2xl font-900">Your Bucket</h3>
+                <button id="closeCartBtn" class="p-2 hover:bg-gray-100 rounded-lg transition">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Cart Items Container -->
+        <div class="flex-grow overflow-y-auto p-6" id="cartItemsContainer">
+            <p class="text-center text-gray-500 mt-8">Your bucket is empty</p>
+        </div>
+
+        <!-- Cart Footer -->
+        <div class="border-t border-gray-200 p-6 space-y-4">
+            <div class="space-y-2">
+                <div class="flex justify-between text-sm">
+                    <span class="text-gray-600">Subtotal</span>
+                    <span class="font-600" id="subtotal">₦0</span>
+                </div>
+                <div class="flex justify-between text-sm">
+                    <span class="text-gray-600">Delivery</span>
+                    <span class="font-600" id="delivery">₦500</span>
+                </div>
+                <div class="h-px bg-gray-200 my-2"></div>
+                <div class="flex justify-between text-lg">
+                    <span class="font-900">Total</span>
+                    <span class="font-900 text-red-600" id="total">₦500</span>
+                </div>
+            </div>
+            <button class="btn-primary w-full py-3 text-lg">Proceed to Checkout</button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-16 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
+                <!-- Brand Column -->
+                <div>
+                    <div class="logo text-white mb-4">🍗 KaKuku Hotel</div>
+                    <p class="text-gray-400 text-sm">Finger-Lickin' Kuku! Delivering crispy excellence since 2026.</p>
+                </div>
+
+                <!-- Quick Links -->
+                <div>
+                    <h4 class="font-900 mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#menu" class="footer-link text-sm">Menu</a></li>
+                        <li><a href="#deals" class="footer-link text-sm">Deals</a></li>
+                        <li><a href="#" class="footer-link text-sm">Store Locator</a></li>
+                        <li><a href="#" class="footer-link text-sm">Track Order</a></li>
+                    </ul>
+                </div>
+
+                <!-- Support -->
+                <div>
+                    <h4 class="font-900 mb-4">Support</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="footer-link text-sm">Help & Support</a></li>
+                        <li><a href="#" class="footer-link text-sm">Contact Us</a></li>
+                        <li><a href="#" class="footer-link text-sm">FAQs</a></li>
+                        <li><a href="#" class="footer-link text-sm">Feedback</a></li>
+                    </ul>
+                </div>
+
+                <!-- Legal -->
+                <div>
+                    <h4 class="font-900 mb-4">Legal</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="footer-link text-sm">Terms of Service</a></li>
+                        <li><a href="#" class="footer-link text-sm">Privacy Policy</a></li>
+                        <li><a href="#" class="footer-link text-sm">Careers</a></li>
+                        <li><a href="#" class="footer-link text-sm">Sustainability</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Social Media & Copyright -->
+            <div class="border-t border-gray-800 pt-8">
+                <div class="flex flex-col sm:flex-row justify-between items-center gap-6">
+                    <p class="text-gray-400 text-sm">© 2026 KaKuku Hotel. All rights reserved. Finger-Lickin' Kuku!</p>
+                    <div class="flex gap-4">
+                        <a href="#" class="social-icon" title="Facebook">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="social-icon" title="Twitter">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417a9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="social-icon" title="Instagram">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08a11.824 11.824 0 01-4.123-.06c-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.058-.975.045-1.504.207-1.857.344-.467.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.047 1.023-.058 1.351-.058 3.807v.468c0 2.456.011 2.784.058 3.807.045.975.207 1.504.344 1.857.182.466.398.8.748 1.15.35.35.683.566 1.15.748.353.137.882.3 1.857.344 1.054.048 1.37.058 4.041.058h.08c2.597 0 2.917-.01 3.96-.058.976-.045 1.505-.207 1.858-.344.466-.182.8-.398 1.15-.748.35-.35.566-.683.748-1.15.137-.353.3-.882.344-1.857.048-1.055.058-1.37.058-4.041v-.08c0-2.597-.01-2.917-.058-3.96-.045-.976-.207-1.505-.344-1.858a3.097 3.097 0 00-.748-1.15 3.098 3.098 0 00-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.023-.047-1.351-.058-3.807-.058zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // ==================== MENU DATA ====================
+        const menuData = {
+            buckets: [
+                { id: 1, name: "KaKuku Bucket Meal", category: "buckets", price: 4999, description: "8 pieces of crispy, golden-fried chicken with sides" },
+                { id: 2, name: "The Mega Bucket", category: "buckets", price: 7999, description: "16 pieces + 2 sides + 2 drinks. Perfect for groups!" },
+                { id: 3, name: "Family KaKuku Pack", category: "buckets", price: 5999, description: "10 pieces with fries, coleslaw & gravy" },
+                { id: 4, name: "Weekend Feast", category: "buckets", price: 8999, description: "20 pieces + 4 sides + bucket of ice cream" },
+            ],
+            burgers: [
+                { id: 5, name: "Classic Zinger Burger", category: "burgers", price: 1899, description: "Crispy fried chicken patty with lettuce and mayo" },
+                { id: 6, name: "Spicy Twister Wrap", category: "burgers", price: 1599, description: "Hot & spicy chicken in a soft flour tortilla" },
+                { id: 7, name: "Double Chicken Burger", category: "burgers", price: 2299, description: "Two juicy chicken patties with special sauce" },
+                { id: 8, name: "Cheese Loaded Zinger", category: "burgers", price: 2099, description: "Zinger with melted cheese and crispy bacon" },
+            ],
+            sharing: [
+                { id: 9, name: "Party Mix Platter", category: "sharing", price: 6999, description: "Assorted chicken pieces for the whole squad" },
+                { id: 10, name: "Celebration Box", category: "sharing", price: 8999, description: "Everything you need for a party celebration" },
+                { id: 11, name: "Mixed Tenders Pack", category: "sharing", price: 4999, description: "12 tender strips with dipping sauces" },
+                { id: 12, name: "Bucket Party Set", category: "sharing", price: 9999, description: "2 buckets + 4 sides + 4 drinks" },
+            ],
+            sides: [
+                { id: 13, name: "Crispy Fries", category: "sides", price: 599, description: "Golden, salted crispy fries" },
+                { id: 14, name: "Creamy Coleslaw", category: "sides", price: 699, description: "Fresh coleslaw with creamy dressing" },
+                { id: 15, name: "KaKuku Gravy", category: "sides", price: 499, description: "Rich, savory gravy for your chicken" },
+                { id: 16, name: "Corn on the Cob", category: "sides", price: 799, description: "Buttered and seasoned corn" },
+            ],
+            drinks: [
+                { id: 17, name: "Coca-Cola (500ml)", category: "drinks", price: 599, description: "Ice-cold Coca-Cola" },
+                { id: 18, name: "Sprite (500ml)", category: "drinks", price: 599, description: "Refreshing Sprite" },
+                { id: 19, name: "Fanta Orange (500ml)", category: "drinks", price: 499, description: "Sweet Fanta Orange" },
+                { id: 20, name: "Bottled Water (500ml)", category: "drinks", price: 299, description: "Pure bottled water" },
+            ]
+        };
+
+        // ==================== STATE ====================
+        let cart = [];
+        let currentCategory = "all";
+
+        // ==================== DOM ELEMENTS ====================
+        const cartBtn = document.getElementById("cartBtn");
+        const cartBadge = document.getElementById("cartBadge");
+        const cartDrawer = document.getElementById("cartDrawer");
+        const cartOverlay = document.getElementById("cartOverlay");
+        const closeCartBtn = document.getElementById("closeCartBtn");
+        const foodGrid = document.getElementById("foodGrid");
+        const menuTabs = document.querySelectorAll(".tab-btn");
+        const cartItemsContainer = document.getElementById("cartItemsContainer");
+
+        // ==================== CART FUNCTIONS ====================
+        function openCart() {
+            cartDrawer.classList.add("open");
+            cartOverlay.classList.add("open");
+        }
+
+        function closeCart() {
+            cartDrawer.classList.remove("open");
+            cartOverlay.classList.remove("open");
+        }
+
+        function updateCartUI() {
+            cartBadge.textContent = cart.length;
+            if (cart.length > 0) {
+                cartBadge.style.display = "flex";
+            } else {
+                cartBadge.style.display = "none";
+            }
+
+            // Update cart items display
+            if (cart.length === 0) {
+                cartItemsContainer.innerHTML = '<p class="text-center text-gray-500 mt-8">Your bucket is empty</p>';
+            } else {
+                cartItemsContainer.innerHTML = cart.map((item, index) => `
+                    <div class="cart-item">
+                        <div class="flex-grow">
+                            <p class="font-600 text-gray-900">${item.name}</p>
+                            <p class="text-sm text-gray-500">₦${item.price.toLocaleString()}</p>
+                        </div>
+                        <div class="quantity-control">
+                            <button class="quantity-btn" onclick="decreaseQuantity(${index})">−</button>
+                            <span class="px-2 font-600 text-sm">${item.quantity}</span>
+                            <button class="quantity-btn" onclick="increaseQuantity(${index})">+</button>
+                        </div>
+                        <button class="ml-4 p-1 hover:bg-red-100 rounded" onclick="removeFromCart(${index})">
+                            <svg class="w-5 h-5 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
+                            </svg>
+                        </button>
+                    </div>
+                `).join("");
+            }
+
+            updateTotals();
+        }
+
+        function addToCart(item) {
+            const existingItem = cart.find(i => i.id === item.id);
+            if (existingItem) {
+                existingItem.quantity++;
+            } else {
+                cart.push({ ...item, quantity: 1 });
+            }
+            updateCartUI();
+        }
+
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            updateCartUI();
+        }
+
+        function increaseQuantity(index) {
+            cart[index].quantity++;
+            updateCartUI();
+        }
+
+        function decreaseQuantity(index) {
+            if (cart[index].quantity > 1) {
+                cart[index].quantity--;
+            } else {
+                removeFromCart(index);
+            }
+            updateCartUI();
+        }
+
+        function updateTotals() {
+            const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            const delivery = subtotal > 0 ? 500 : 0;
+            const total = subtotal + delivery;
+
+            document.getElementById("subtotal").textContent = "₦" + subtotal.toLocaleString();
+            document.getElementById("delivery").textContent = "₦" + delivery.toLocaleString();
+            document.getElementById("total").textContent = "₦" + total.toLocaleString();
+        }
+
+        // ==================== MENU FUNCTIONS ====================
+        function renderMenu(category = "all") {
+            currentCategory = category;
+            
+            let items = [];
+            if (category === "all") {
+                items = Object.values(menuData).flat();
+            } else {
+                items = menuData[category] || [];
+            }
+
+            foodGrid.innerHTML = items.map(item => `
+                <div class="food-card">
+                    <div class="food-image">
+                        <div class="text-center">
+                            <p class="text-3xl mb-2">🍗</p>
+                            <p class="text-xs text-gray-400">${item.category}</p>
+                        </div>
+                    </div>
+                    <div class="food-content">
+                        <h3 class="food-title">${item.name}</h3>
+                        <p class="food-description">${item.description}</p>
+                        <div class="food-footer">
+                            <span class="food-price">₦${item.price.toLocaleString()}</span>
+                            <button class="btn-add" onclick='addToCart(${JSON.stringify(item).replace(/'/g, "&apos;")})'>
+                                Add to Bucket
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `).join("");
+        }
+
+        // ==================== EVENT LISTENERS ====================
+        cartBtn.addEventListener("click", openCart);
+        closeCartBtn.addEventListener("click", closeCart);
+        cartOverlay.addEventListener("click", closeCart);
+
+        menuTabs.forEach(tab => {
+            tab.addEventListener("click", () => {
+                menuTabs.forEach(t => t.classList.remove("active"));
+                tab.classList.add("active");
+                renderMenu(tab.dataset.category);
+            });
+        });
+
+        // ==================== INITIALIZE ====================
+        renderMenu("all");
+        updateCartUI();
+
+        // Smooth scroll on mobile menu close
+        document.getElementById("mobileMenuBtn").addEventListener("click", () => {
+            // Toggle mobile menu (can be expanded with more navigation)
+            console.log("Mobile menu clicked");
+        });
+    </script>
+</body>
+</html>
